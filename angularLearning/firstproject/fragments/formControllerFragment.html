@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+
+        <div ng-controller="FormController">
+            <div ng-if="isLoading">Loading...</div>
+            <div ng-if="isLoading === false">
+                Username:
+                <pre>{{user}}</pre>
+            </div>
+            <form>
+                <input type="number" placeholder="Type user's id" ng-model="userId">
+                <input type="submit" value="Get user" ng-click = "search()">
+            </form>
+        </div>
+    </body>
+</html>
