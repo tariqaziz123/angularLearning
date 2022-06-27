@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html ng-app="studentApp">
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    </head>
+    <body ng-controller="studentController">
+        <h1>Student Information:</h1>
+        <form ng-submit="submitStudentForm()">
+            <label for="firstName">First Name: </label><br />
+            <input type="text" id="firstName"  ng-model="student.firstName" /><br />
+            <label for="lastName">Last Name: </label><br />
+            <input type="text" id="lastName" ng-model="student.lastName" /><br />
+            <label for="dob">DoB</label>
+            <input type="date" id="dob" ng-model="student.DoB" /><br /><br />
+            <label for="gender">Gender:</label><br />
+            <select id="gender" ng-model="student.gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select><br /><br/>
+            <span>Training Type:</span><br />
+            <label>
+                <input value="online" type="radio" name="training" ng-model="student.training" />
+                    Online
+            </label><br />
+            <label>
+                <input value="onsite" type="radio" name="training" ng-model="student.training" />
+                    Onsite
+            </label><br />
+            <span>Subjects</span><br />
+            <label>
+                <input type="checkbox" ng-model="student.maths" />Maths
+            </label><br />
+            <label>
+                <input type="checkbox" ng-model="student.physics" />Physics
+            </label><br />
+            <label>
+                <input type="checkbox" ng-model="student.chemistry" />Chemistry
+            </label><br /><br/>
+            <input type="submit" value="Submit" />
+            <input type="reset" ng-click="resetForm()" value="Reset" />
+        </form>
+        <script>
+            var studentApp = angular.module('studentApp', []);
+
+            studentApp.controller("studentController", function($scope, $http){
+                $scope.originalStudent ={
+                    firstName:"John",
+                    lastName:"Wick",
+                    DoB:new Date('09/01/2015'),
+                    gender:"male",
+                    trainingType:"online",
+                    maths:false, 
+                    physics:true,
+                    chemistry:true
+                };
+
+                $scope.student = angular.copy($scope.originalStudent);
+
+                $scope.submitStudentForm= function (){
+                    
+                    // var success = function ( data, status, headers, config ) {
+                    //     alert('Student saved successfully');
+                    // }
+                    alert('Student saved successfully');
+
+                    // var onError = function ( data, status, headers, config ) {
+                    //     alert('Error occurred');
+                    // }
+
+                    // $http.post('/student/submitData',{student : $scope.student }).then(function(response){
+                    //     success;
+                    // },function(response){
+                    //     onError;
+                    // })
+                };
+
+                $scope.resetForm = function () {
+                    $scope.student = angular.copy($scope.originalStudent);
+                }
+
+                $scope.resetForm = function () {
+                    $scope.student = angular.copy($scope.originalStudent);
+                }
+            })
+        </script>
+    </body>
+</html>
